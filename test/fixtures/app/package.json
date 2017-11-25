@@ -1,0 +1,10 @@
+{
+  "name": "app",
+  "scripts": {
+    "dev": "avet-bin dev"
+  },
+  "dependencies": {
+    "avet": "^1.0.0-1",
+    "avet-bin": "^1.0.0-1"
+  }
+}
