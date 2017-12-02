@@ -2,7 +2,7 @@ const WebpackMonitor = require('webpack-monitor');
 
 exports.monitor = {
   capture: true, // will collect stats on the build where meaningful changes have occured
-  target: '../monitor/stats.json', // specify where to save your build data
+  target: '../.monitor/stats.json', // specify where to save your build data
   launch: true, // will fire up a local server and launch the webpack monitor analysis tool
   port: 8081, // optionally set the port for local server
 };
