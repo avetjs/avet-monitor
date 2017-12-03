@@ -1,20 +1,26 @@
 const { resolve } = require('path');
-const { readFile, existsSync } = require('fs');
+const { readFile, existsSync, readFileSync } = require('fs');
 const MonitorServer = require('webpack-monitor/utils/server');
 
-function waitOnFile(file, setup = 15000, interval = 4000, timeout = 60000) {
+function waitOnFileData(file, setup = 15000, interval = 4000, timeout = 60000) {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       if (existsSync(file)) {
-        return resolve(true);
+        const data = readFileSync(file);
+        if (data) {
+          return resolve(data);
+        }
       }
       const now = new Date();
       let timer = setInterval(() => {
         if (existsSync(file)) {
-          resolve(true);
-          clearInterval(timer);
-          timer = null;
-          return;
+          const data = readFileSync(file);
+          if (data) {
+            resolve(data);
+            clearInterval(timer);
+            timer = null;
+            return;
+          }
         }
         const t = new Date();
         if (t - now > timeout) {
@@ -33,14 +39,9 @@ module.exports = ({ config }) => {
       '../..',
       target
     );
-    waitOnFile(filepath)
-      .then(() => {
-        readFile(filepath, 'utf8', (err, data) => {
-          if (err) {
-            throw err;
-          }
-          MonitorServer(JSON.parse(data), port);
-        });
+    waitOnFileData(filepath)
+      .then(data => {
+        MonitorServer(JSON.parse(data), port);
       })
       .catch(err => {
         throw err;
