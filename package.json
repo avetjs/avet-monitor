@@ -1,21 +1,12 @@
 {
   "name": "avet-monitor",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "monitor for avet",
   "avetPlugin": {
     "name": "monitor"
   },
-  "files": [
-    "config",
-    "agent.js",
-    "README.md"
-  ],
-  "keywords": [
-    "avet",
-    "avetPlugin",
-    "avet-plugin",
-    "monitor"
-  ],
+  "files": ["config", "agent.js", "README.md"],
+  "keywords": ["avet", "avetPlugin", "avet-plugin", "monitor"],
   "dependencies": {
     "webpack-monitor": "^1.0.13"
   },
