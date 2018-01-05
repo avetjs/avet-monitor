@@ -4,7 +4,7 @@
     "dev": "avet-bin dev"
   },
   "dependencies": {
-    "avet": "^1.0.0-4",
-    "avet-bin": "^1.0.0-4"
+    "avet": "1.0.0",
+    "avet-bin": "1.0.0-22"
   }
 }
